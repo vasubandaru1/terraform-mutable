@@ -1,3 +1,3 @@
 bucket = "vasudevops"
-key    = "terraformmutable/vpc/prod/terraform.tfstate"
+key    = "terraform-mutable/vpc/prod/terraform.tfstate"
 region = "us-east-1"
