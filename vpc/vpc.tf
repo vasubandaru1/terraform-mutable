@@ -8,7 +8,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_vpc_ipv4_cidr_block_association" "addon" {
-  COUNT      = length(var.VPC_CIDR_ADDON)
+  count      = length(var.VPC_CIDR_ADDON)
   vpc_id     = aws_vpc.main.id
   cidr_block = element(var.VPC_CIDR_ADDON, count.index)
 }
