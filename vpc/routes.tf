@@ -4,7 +4,7 @@ resource "aws_route_table" "route" {
   route = [
     {
       cidr_blocks                     = var.DEFAULT_VPC_CIDR
-      vpc_perring_connection_id       = aws_vpc_peering_connection.peering.id
+      vpc_peering_connection_id       = aws_vpc_peering_connection.peer.id
       carrier_gateway_id              = ""
       "destination_prefix_list_id"    = ""
       "egress_only_gateway_id"        = ""
@@ -28,6 +28,6 @@ resource "aws_route" "route-from-default-vpc" {
   count                    = length(local.association-list)
   route_table_id           = tomap(element(local.association-list,count.index))["route_table"]
   destination_cidr_block   = tomap(element(local.association-list,count.index))["cidr"]
-  vpc_peering_connection_id = aws_vpc_peering_connection.peering.id
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
 
 }
