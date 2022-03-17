@@ -6,20 +6,20 @@ clean: ## clean the meta data
 
 dev-apply:clean ## make Dev environment
 	@terraform init -backend-config=env/dev-backend.tfvars
-	@terraform apply -var-file=env/dev.tf -auto-approve
+	@terraform apply -auto-approve -var-file=env/dev.tf
 
 
 
 prod-apply: clean ## make prod environment
 	@terraform init -backend-config=env/prod-backend.tfvars
-	@terraform apply -var-file=env/prod.tf -auto-approve
+	@terraform apply -auto-approve -var-file=env/prod.tf
 
 
 dev-destroy:clean ## make destroy environment
 	@terraform init -backend-config=env/dev-backend.tfvars
-	@terraform apply -var-file=env/dev.tf -auto-approve
+	@terraform apply -auto-approve -var-file=env/dev.tf
 
 
 prod-destroy:clean ## make destroy environment
 	@terraform init -backend-config=env/prod-backend.tfvars
-	@terraform apply -var-file=env/dev.tf -auto-approve
+	@terraform apply -auto-approve -var-file=env/dev.tf
