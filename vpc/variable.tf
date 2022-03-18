@@ -5,3 +5,4 @@ variable "SUBNETS" {}
 variable "AZS" {}
 variable "DEFAULT_VPC_ID" {}
 variable "DEFAULT_VPC_CIDR" {}
+
