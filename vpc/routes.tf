@@ -16,7 +16,7 @@ resource "aws_route_table" "route" {
       "network_interface_id"           = ""
       "transit_gateway_id"             = ""
       "vpc_endpoint_id"                = ""
-  }
+   }
   ]
   tags = {
     Name = "example"
