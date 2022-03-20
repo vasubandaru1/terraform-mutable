@@ -5,3 +5,6 @@ resource "aws_internet_gateway" "igw" {
     Name = "${var.ENV}-igw"
   }
 }
+output "aws_gateway" {
+  value = "aws_internet_gateway.igw.id"
+}
