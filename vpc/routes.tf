@@ -23,7 +23,6 @@ resource "aws_route_table" "public-route" {
   },
     {
       cidr_block = "0.0.0.0/0"
-      vpc_peering_connection_id = ""
       gateway_id = aws_internet_gateway.igw.id
     }
 
