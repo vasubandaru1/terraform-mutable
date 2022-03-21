@@ -11,12 +11,12 @@ data "terraform_remote_state" "VPC" {
 data "aws_secretsmanager_secret" "secrets" {
   name = var.ENV
 }
-resource "aws_secretsmanager_secret_version" "secrets" {
-  secret_id     = aws_secretsmanager_secret_version.secrets.id["RDS_MYSQL_USER"]
+resource "aws_secretsmanager_secret_version" "secrets-version" {
+  secret_id     = aws_secretsmanager_secret_version.secrets-version.id["RDS_MYSQL_USER"]
 
 }
 output "example" {
-  value = jsondecode(aws_secretsmanager_secret_version.secrets.secret_string)
+  value = jsondecode(aws_secretsmanager_secret_version.secrets-version.secret_string)
 }
 output "seccret" {
   value = data.aws_secretsmanager_secret.secrets
