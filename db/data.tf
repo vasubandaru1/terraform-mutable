@@ -9,7 +9,7 @@ data "terraform_remote_state" "VPC" {
 }
 
 data "aws_secretsmanager_secret" "secrets" {
-  name = "${var.ENV}-secretmanager"
+  name = var.ENV
 }
 output "seccret" {
   value = data.aws_secretsmanager_secret.secrets
