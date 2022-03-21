@@ -6,26 +6,23 @@
 #  name                 = "mysqldb"
 #  username             = "admin"
 #  password             = "admin123"
-#  parameter_group_name = "default.mysql5.7"
+#  parameter_group_name = aws_db_parameter_group.pg.name
 #  skip_final_snapshot  = true
 #}
 
-#
-#resource "aws_db_parameter_group" "pg" {
-#  name   = "mysql-${var.ENV}-pg"
-#  family = "mysql5.6"
-#
-#}
-#
-#resource "aws_db_subnet_group" "subnet-group" {
-#  name       = "mysql-subnet-group-${var.ENV}"
-#  subnet_ids = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
-#
-#  tags = {
-#    Name = "mysql-subnet-group-${var.ENV}"
-#  }
-#}
 
-output "PRIVATE_SUBNETS" {
-  value = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
+resource "aws_db_parameter_group" "pg" {
+  name   = "mysql-${var.ENV}-pg"
+  family = "mysql5.6"
+
 }
+
+resource "aws_db_subnet_group" "subnet-group" {
+  name       = "mysql-subnet-group-${var.ENV}"
+  subnet_ids = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
+
+  tags = {
+    Name = "mysql-subnet-group-${var.ENV}"
+  }
+}
+
