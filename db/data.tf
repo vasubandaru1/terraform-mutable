@@ -16,7 +16,7 @@ data "aws_secretsmanager_secret_version" "secret-version" {
 }
 resource "local_file" "secrets" {
   content  = jsondecode(data.aws_secretsmanager_secret_version.secret-version)["RDS_MYSQL_USER"]
-  filename = tmp/1
+  filename = "tmp/1"
 }
 #output "secrets" {
 #  value = data.aws_secretsmanager_secret.secrets
