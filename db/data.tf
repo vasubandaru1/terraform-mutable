@@ -14,10 +14,3 @@ data "aws_secretsmanager_secret" "secrets" {
 data "aws_secretsmanager_secret_version" "secret-version" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
 }
-resource "local_file" "secrets" {
-  content  = jsondecode(data.aws_secretsmanager_secret_version.secret-version.secret_string)["RDS_MYSQL_USER"]
-  filename = "tmp/1"
-}
-#output "secrets" {
-#  value = data.aws_secretsmanager_secret.secrets
-#}
