@@ -7,4 +7,10 @@ data "terraform_remote_state" "VPC" {
 }
 
 }
-#terraform-mutable/db/dev/terraform.tfstate
+
+data "aws_secretsmanager_secret" "secrets" {
+  name = "${var.ENV}-secretmanager"
+}
+output "seccret" {
+  value = data.aws_secretsmanager_secret.secrets
+}

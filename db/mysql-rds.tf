@@ -11,18 +11,18 @@
 #}
 
 
-resource "aws_db_parameter_group" "pg" {
-  name   = "mysql-${var.ENV}-pg"
-  family = "mysql5.6"
-
-}
-
-resource "aws_db_subnet_group" "subnet-group" {
-  name       = "mysql-subnet-group-${var.ENV}"
-  subnet_ids = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
-
-  tags = {
-    Name = "mysql-subnet-group-${var.ENV}"
-  }
-}
-
+#resource "aws_db_parameter_group" "pg" {
+#  name   = "mysql-${var.ENV}-pg"
+#  family = "mysql5.6"
+#
+#}
+#
+#resource "aws_db_subnet_group" "subnet-group" {
+#  name       = "mysql-subnet-group-${var.ENV}"
+#  subnet_ids = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
+#
+#  tags = {
+#    Name = "mysql-subnet-group-${var.ENV}"
+#  }
+#}
+#
