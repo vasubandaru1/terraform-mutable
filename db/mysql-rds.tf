@@ -26,6 +26,6 @@
 #  }
 #}
 
-output "PRIVATE_SUBNETS_IDS" {
+output "PRIVATE_SUBNETS" {
   value = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS
 }
