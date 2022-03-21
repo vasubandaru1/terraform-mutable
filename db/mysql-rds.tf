@@ -40,7 +40,7 @@ resource "aws_route53_record" "mysql" {
   name    = "mysql-${var.ENV}"
   type    = "CNAME"
   ttl     = "300"
-  records = [aws_db_instance.mysql.endpoint]
+  records = [aws_db_instance.mysql.address]
 }
 
 resource "null_resource" "schema-apply" {
@@ -49,8 +49,8 @@ resource "null_resource" "schema-apply" {
 yum install mariadb -y
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
 cd /tmp
-unzip /tmp/mysql.zip
-mysql -h${aws_route53_record.mysql.fqdn} -u${local.rds_user} -p${local.rds_pass} <mysql-main/shipping.sql
+unzip -o /tmp/mysql.zip
+mysql -h${aws_db_instance.mysql.address} -u${local.rds_user} -p${local.rds_pass} <mysql-main/shipping.sql
 EOF
   }
 }
