@@ -1,8 +1,6 @@
 locals {
   rds_user = jsondecode(data.aws_secretsmanager_secret_version.secret-version.secret_string)["RDS_MYSQL_USER"]
   rds_pass = jsondecode(data.aws_secretsmanager_secret_version.secret-version.secret_string)["RDS_MYSQL_PASS"]
-  DEFAULT_VPC_CIDR = split(",", data.terraform_remote_state.VPC.outputs.DEFAULT_VPC_CIDR)
-   ALL_CIDR = concat(data.terraform_remote_state.VPC.outputs.ALL_VPC_CIDR, local.DEFAULT_VPC_CIDR)
 }
 
 
@@ -18,11 +16,13 @@ resource "aws_db_instance" "mysql" {
   parameter_group_name = aws_db_parameter_group.pg.name
   skip_final_snapshot  = true
   vpc_security_group_ids = [aws_security_group.mysql.id]
+  db_subnet_group_name = aws_db_subnet_group.subnet-group.name
 }
 
 resource "aws_security_group" "mysql" {
   name        = "mysql-${var.ENV}"
   description = "mysql-${var.ENV}"
+  vpc_id = data.terraform_remote_state.VPC.outputs.VPC_ID
 
   ingress {
     description      = "mysql"
