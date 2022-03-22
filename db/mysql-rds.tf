@@ -74,8 +74,8 @@ resource "aws_route53_record" "mysql" {
 
 resource "null_resource" "schema-apply" {
   provisioner "local-exec" {
-    command=<<EOF
-yum install mariadb -y
+    command = <<EOF
+sudo yum install mariadb -y
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
 cd /tmp
 unzip -o /tmp/mysql.zip
