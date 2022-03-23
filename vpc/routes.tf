@@ -44,12 +44,7 @@ resource "aws_route_table" "public-route" {
       "transit_gateway_id"= ""
       "vpc_endpoint_id" =""
 
-  },
-    {
-      cidr_block                = ["0.0.0.0/0"]
-      vpc_peering_connection_id = ""
-
-    }
+  }
     ]
 
   tags = {
