@@ -32,6 +32,17 @@ resource "aws_route_table" "public-route" {
     {
     cidr_block                = var.DEFAULT_VPC_CIDR
     vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+      gateway_id = ""
+      "carrier_gateway_id" =""
+      "destination_prefix_list_id" = ""
+      "egress_only_gateway_id" =""
+      "instance_id" = ""
+      "ipv6_cidr_block" =""
+      "local_gateway_id" =""
+      "nat_gateway_id" =""
+      "network_interface_id" =""
+      "transit_gateway_id"= ""
+      "vpc_endpoint_id" =""
 
   },
     {
