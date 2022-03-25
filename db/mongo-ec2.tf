@@ -3,7 +3,8 @@ resource "aws_security_group" "mongodb" {
   description = "mongodb-${var.ENV}"
   vpc_id      = data.terraform_remote_state.VPC.outputs.VPC_ID
 
-  ingress {
+  ingress = [
+    {
     description      = "MONGODB"
     from_port        = 27017
     to_port          = 27017
@@ -12,8 +13,9 @@ resource "aws_security_group" "mongodb" {
     ipv6_cidr_blocks = []
     self             = false
   }
-
-  egress {
+]
+  egress = [
+    {
     description      = "egress"
     from_port        = 0
     to_port          = 0
@@ -22,6 +24,7 @@ resource "aws_security_group" "mongodb" {
     ipv6_cidr_blocks = ["::/0"]
     self             = false
   }
+    ]
 
   tags = {
     Name = "mongodb-${var.ENV}"
