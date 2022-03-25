@@ -11,6 +11,9 @@ resource "aws_security_group" "mongodb" {
     cidr_blocks      = local.ALL_CIDR
     ipv6_cidr_blocks = []
     self             = false
+    security_groups = []
+    prefix_list_ids = []
+
   }
 
   egress {
@@ -21,6 +24,8 @@ resource "aws_security_group" "mongodb" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
     self             = false
+    security_groups = []
+    prefix_list_ids = []
   }
 
 
