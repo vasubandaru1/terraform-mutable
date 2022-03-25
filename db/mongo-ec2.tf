@@ -58,6 +58,11 @@ resource "aws_spot_instance_request" "mongodb" {
     Name = "mongodb-${var.ENV}"
   }
 }
+resource "aws_ec2_tag" "mongodb" {
+  key         = "Name"
+  resource_id = aws_spot_instance_request.mongodb.spot_instance_id
+  value       = "mongodb-${var.ENV}"
+}
 
 resource "aws_route53_record" "mongodb" {
   zone_id = data.terraform_remote_state.VPC.outputs.INTERNAL_HOSTEDZONE_ID
@@ -80,7 +85,7 @@ resource "null_resource" "mongodb_setup" {
       "yum install python3-pip -y",
       "pip3 install pip --upgrade",
       "pip3 install ansible",
-      "ansible_pull -U https://github.com/vasubandaru1/ANSIBLE2.git roboshop-pull.yml -e ENV=${var.ENV}"
+      "ansible-pull -U https://github.com/vasubandaru1/ANSIBLE2.git roboshop-pull.yml -e ENV=${var.ENV}"
 
     ]
 
