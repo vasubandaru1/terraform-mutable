@@ -11,8 +11,8 @@ resource "aws_security_group" "mongodb" {
     cidr_blocks      = local.ALL_CIDR
     ipv6_cidr_blocks = []
     self             = false
-    security_groups = []
-    prefix_list_ids = []
+    security_groups =  []
+    prefix_list_ids =  []
 
   }
 
@@ -24,8 +24,8 @@ resource "aws_security_group" "mongodb" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = []
     self             = false
-    security_groups = []
-    prefix_list_ids = []
+    security_groups =  []
+    prefix_list_ids =  []
   }
 
 
@@ -39,6 +39,7 @@ resource "aws_spot_instance_request" "mongodb" {
   instance_type          =var.MONGODB_INSTANCE_TYPE
   vpc_security_group_ids = [aws_security_group.mongodb.id]
   wait_for_fulfillment   = true
+  subnet_id              = data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS[0]
 
   tags = {
     Name = "mongodb-${var.ENV}"
