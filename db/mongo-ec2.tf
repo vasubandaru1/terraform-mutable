@@ -14,7 +14,7 @@ resource "aws_security_group" "mongodb" {
   }
 
   egress {
-    description      = egress
+    description      = "egress"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
