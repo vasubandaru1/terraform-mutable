@@ -1,5 +1,5 @@
 resource "aws_elasticache_cluster" "example" {
-  cluster_id           = "redis.var${var.ENV}"
+  cluster_id           = "redis-${var.ENV}"
   engine               = "redis"
   node_type            = var.REDIS_INSTANCE_TYPE
   num_cache_nodes      = 1
