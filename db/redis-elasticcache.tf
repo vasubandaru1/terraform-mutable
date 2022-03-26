@@ -59,3 +59,11 @@ resource "aws_security_group" "redis" {
     Name = "redis-${var.ENV}"
   }
 }
+
+resource "aws_route53_record" "redis" {
+  zone_id = data.terraform_remote_state.VPC.outputs.INTERNAL_HOSTEDZONE_ID
+  name    = "redis-${var.ENV}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = aws_elasticache_cluster.example.cache_nodes.*.address
+}
