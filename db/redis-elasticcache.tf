@@ -11,8 +11,18 @@ resource "aws_elasticache_cluster" "example" {
 }
 
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "redis-${var.ENV}"
+  name   = "cache-params"
   family = "redis6.x"
+
+  parameter {
+    name  = "activerehashing"
+    value = "yes"
+  }
+
+  parameter {
+    name  = "min-slaves-to-write"
+    value = "2"
+  }
 
 }
 
