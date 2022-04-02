@@ -1,4 +1,4 @@
-resource "aws_elasticache_cluster" "example" {
+resource "aws_elasticache_cluster" "redis" {
   cluster_id           = "redis-${var.ENV}"
   engine               = "redis"
   node_type            = var.REDIS_INSTANCE_TYPE
@@ -63,5 +63,5 @@ resource "aws_route53_record" "redis" {
   name    = "redis-${var.ENV}"
   type    = "CNAME"
   ttl     = "300"
-  records = aws_elasticache_cluster.example.cache_nodes.*.address
+  records = aws_elasticache_cluster.redis.cache_nodes.*.address
 }
