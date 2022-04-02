@@ -11,7 +11,7 @@ resource "aws_elasticache_cluster" "redis" {
 }
 resource "aws_elasticache_parameter_group" "redis" {
   family = "redis6.x"
-  name   ="redis-${var.ENV}"
+  name   = "redis-${var.ENV}"
 }
 
 resource "aws_elasticache_subnet_group" "redis" {
