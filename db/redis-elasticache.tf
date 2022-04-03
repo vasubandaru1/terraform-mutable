@@ -8,7 +8,7 @@ resource "aws_elasticache_cluster" "example" {
   parameter_group_name = aws_elasticache_parameter_group.redis.name
   subnet_group_name    = aws_elasticache_subnet_group.redis.name
   engine_version       = "6.x"
-  port                 =  6379
+  port                 =  6380
 }
 
 
