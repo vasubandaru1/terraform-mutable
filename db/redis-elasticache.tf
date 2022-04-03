@@ -16,9 +16,9 @@ resource "aws_elasticache_parameter_group" "redis" {
   name   = "redis-${var.ENV}"
 }
 
-output "parameter" {
-  value = aws_elasticache_parameter_group
-}
+#output "parameter" {
+#  value = aws_elasticache_parameter_group
+#}
 
 #
 #resource "aws_elasticache_subnet_group" "redis" {
