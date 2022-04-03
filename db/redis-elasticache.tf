@@ -1,8 +1,5 @@
 
-resource "aws_elasticache_parameter_group" "redis" {
-  family = "redis6.x"
-  name   = "redis-${var.ENV}"
-}
+
 resource "aws_elasticache_cluster" "example" {
   cluster_id           = "redis-${var.ENV}"
   engine               = "redis"
@@ -14,7 +11,10 @@ resource "aws_elasticache_cluster" "example" {
   port                 =  6379
 }
 
-
+resource "aws_elasticache_parameter_group" "redis" {
+  family = ""
+  name   = "redis-${var.ENV}"
+}
 
 
 resource "aws_elasticache_subnet_group" "redis" {
