@@ -11,12 +11,17 @@ resource "aws_elasticache_cluster" "example" {
   port                 =  6380
 }
 
-
 resource "aws_elasticache_parameter_group" "redis" {
+  family = "redis"
   name   = "redis-${var.ENV}"
-  family = "redis6.x.cluster.on"
-
 }
+#
+#
+#resource "aws_elasticache_parameter_group" "redis" {
+#  name   = "redis-${var.ENV}"
+#  family = "redis6.x.cluster.on"
+#
+#}
 
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "redis-${var.ENV}"
