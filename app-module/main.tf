@@ -1,5 +1,5 @@
-resource "null_resource" "null" {
-  provisioner "local-exec" {
-    command = "echo hello world"
-  }
+resource "aws_spot_instance_request" "spot" {
+  ami = data.aws_ami.ami.id
+  instance_type = var.INSTANCE_TYPE
+  wait_for_fulfillment = true
 }

@@ -1,0 +1,1 @@
+variable "INSTANCE_TYPE" {}
