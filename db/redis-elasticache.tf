@@ -8,20 +8,14 @@ resource "aws_elasticache_cluster" "example" {
   parameter_group_name = aws_elasticache_parameter_group.redis.name
   subnet_group_name    = aws_elasticache_subnet_group.redis.name
   engine_version       = "6.x"
-  port                 =  6380
+  port                 =  6379
 }
 
 resource "aws_elasticache_parameter_group" "redis" {
-  family = "redis"
+  family = "redis6.x"
   name   = "redis-${var.ENV}"
 }
-#
-#
-#resource "aws_elasticache_parameter_group" "redis" {
-#  name   = "redis-${var.ENV}"
-#  family = "redis6.x.cluster.on"
-#
-#}
+
 
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "redis-${var.ENV}"
