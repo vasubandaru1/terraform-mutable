@@ -13,7 +13,7 @@ resource "aws_elasticache_cluster" "example" {
 
 
 resource "aws_elasticache_parameter_group" "redis" {
-  region = "us-east-1"
+  provider = "us-east-1"
   name   = "redis-${var.ENV}"
   family = "redis6.x"
 
