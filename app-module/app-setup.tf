@@ -7,7 +7,7 @@ resource "null_resource" "app-deploy" {
       password = local.ssh_pass
     }
     inline = [
-      "ansible-pull -u https://github.com/vasubandaru1/ANSIBLE2.git roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=${var.COMPONENT}"
+      "ansible-pull -U https://github.com/vasubandaru1/ANSIBLE2.git roboshop-pull.yml -e ENV=${var.ENV} -e COMPONENT=${var.COMPONENT}"
     ]
   }
 }
