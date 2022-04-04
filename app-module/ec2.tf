@@ -4,6 +4,7 @@ resource "aws_spot_instance_request" "spot" {
   instance_type        = var.INSTANCE_TYPE
   subnet_id             = element(data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS,count.index)
   wait_for_fulfillment = true
+  vpc_security_group_ids = [aws_security_group.sg.id]
 }
 
 resource "aws_instance" "od" {
@@ -11,15 +12,10 @@ resource "aws_instance" "od" {
   ami                  = data.aws_ami.ami.id
   instance_type        = var.INSTANCE_TYPE
   subnet_id            = element(data.terraform_remote_state.VPC.outputs.PRIVATE_SUBNETS_IDS,count.index)
+  vpc_security_group_ids = [aws_security_group.sg.id]
 
 }
 
-locals {
-  INSTANCE_IDS = concat(aws_spot_instance_request.spot.*.spot_instance_id, aws_instance.od.*.id)
-  tags = {
-    Name = "${var.COMPONENT}-${var.ENV}"
-  }
-}
 
 output "INSTANCE_IDS" {
   value = local.INSTANCE_IDS
