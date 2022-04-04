@@ -1,5 +1,8 @@
 resource "null_resource" "app-deploy" {
   count = length(local.PRIVATE_IPS)
+  triggers = {
+    private_ip = element(local.PRIVATE_IPS,count.index )
+  }
   provisioner "remote-exec" {
     connection {
       host     = element(local.PRIVATE_IPS, count.index )
