@@ -6,8 +6,8 @@ resource "aws_security_group" "sg" {
   ingress = [
     {
       description      = "APP"
-      from_port        = var.port
-      to_port          = var.port
+      from_port        = var.PORT
+      to_port          = var.PORT
       protocol         = "tcp"
       cidr_blocks      = local.ALL_VPC_CIDR
       ipv6_cidr_blocks = []
