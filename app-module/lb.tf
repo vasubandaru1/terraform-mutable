@@ -11,3 +11,19 @@ resource "aws_lb_target_group_attachment" "tg-attach" {
   target_id        = element(local.INSTANCE_IDS,count.index )
   port             = var.port
 }
+
+resource "aws_lb_listener_rule" "private" {
+  listener_arn = data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.COMPONENT}-${var.ENV}.roboshop.internal"]
+    }
+  }
+}
