@@ -8,15 +8,6 @@ data "terraform_remote_state" "VPC" {
 
 }
 
-data "terraform_remote_state" "VPC" {
-  backend = "s3"
-  config = {
-    bucket = "vasudevops"
-    key    = "terraform-mutable/alb/${var.ENV}/terraform.tfstate"
-    region = "us-east-1"
-  }
-
-}
 
 
 data "aws_secretsmanager_secret" "secrets" {
