@@ -21,6 +21,7 @@ resource "aws_lb_target_group_attachment" "tg-attach" {
 }
 
 resource "aws_lb_listener_rule" "private" {
+  count = var.IS_PRIVATE_LB ? 1 : 0
   listener_arn =  data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
   priority     = var.LB_RULE_PRIORITY
 
@@ -33,5 +34,34 @@ resource "aws_lb_listener_rule" "private" {
     host_header {
       values = ["${var.COMPONENT}-${var.ENV}.roboshop.internal"]
     }
+  }
+}
+
+resource "aws_lb_listener_rule" "public" {
+  count = var.IS_PRIVATE_LB ? 1 : 0
+  listener_arn =  data.terraform_remote_state.alb.outputs.PRIVATE_LISTENER_ARN
+  priority     = var.LB_RULE_PRIORITY
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.COMPONENT}-${var.ENV}.roboshop.internal"]
+    }
+  }
+}
+
+resource "aws_lb_listener" "private-listener" {
+  count             =  var.IS_PRIVATE_LB ? 0 : 1
+  load_balancer_arn = data.terraform_remote_state.alb.outputs.PUBLIC_ALB_ARN
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg.arn
   }
 }
