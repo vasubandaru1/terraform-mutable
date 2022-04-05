@@ -12,7 +12,7 @@ resource "aws_elasticache_cluster" "example" {
 
 resource "aws_elasticache_parameter_group" "redis" {
   name   = "redis-${var.ENV}"
-  family = "redis"
+  family = "6.x"
 
 
   }
