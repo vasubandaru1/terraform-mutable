@@ -10,7 +10,7 @@ resource "aws_elasticache_cluster" "example" {
   security_group_ids = [aws_security_group.redis.id]
 }
 resource "aws_elasticache_parameter_group" "redis" {
-  name   = "redis"
+  name   = "redis-${var.ENV}"
   family = "redis6.x"
 
 
