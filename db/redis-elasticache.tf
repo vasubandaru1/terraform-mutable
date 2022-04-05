@@ -9,11 +9,13 @@ resource "aws_elasticache_cluster" "example" {
   port                 =  6379
   security_group_ids = [aws_security_group.redis.id]
 }
-
 resource "aws_elasticache_parameter_group" "redis" {
+  name   = "redis"
   family = "redis6.x"
-  name   = "redis-${var.ENV}"
-}
+
+
+  }
+
 
 #output "PARAMETER_GROUP" {
 #  value = "aws_elasticache_parameter_group.redis"
