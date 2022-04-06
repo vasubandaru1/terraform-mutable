@@ -11,12 +11,12 @@ resource "aws_db_instance" "mysql" {
   engine_version       = "5.7"
   instance_class       = "db.t3.micro"
   name                 = "dummy"
-  #  username             = local.rds_user
-  #  password             = local.rds_pass
+    username             = local.rds_user
+    password             = local.rds_pass
   parameter_group_name = aws_db_parameter_group.pg.name
   skip_final_snapshot  = true
-  #  vpc_security_group_ids = [aws_security_group.mysql.id]
-  #  db_subnet_group_name = aws_db_subnet_group.subnet-group.name
+    vpc_security_group_ids = [aws_security_group.mysql.id]
+    db_subnet_group_name = aws_db_subnet_group.subnet-group.name
 }
  resource "aws_db_parameter_group" "pg" {
   name   = "mysql-${var.ENV}-pg"
