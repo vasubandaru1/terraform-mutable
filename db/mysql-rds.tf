@@ -9,7 +9,7 @@ resource "aws_db_instance" "mysql" {
   identifier           = "mysql-${var.ENV}"
   engine               = "mysql"
   engine_version       = "5.7"
-  instance_class       = "db.t3.micro"
+  instance_class       = "db.t2.micro"
   name                 = "dummy"
   username             = local.rds_user
   password             = local.rds_pass
