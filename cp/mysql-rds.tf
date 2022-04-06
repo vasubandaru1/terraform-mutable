@@ -18,11 +18,11 @@
 #    vpc_security_group_ids = [aws_security_group.mysql.id]
 #    db_subnet_group_name = aws_db_subnet_group.subnet-group.name
 #}
- resource "aws_db_parameter_group" "pg" {
-  name   = "mysql-${var.ENV}-pg"
-  family = "mysql5.7"
-
-}
+# resource "aws_db_parameter_group" "pg" {
+#  name   = "mysql-${var.ENV}-pg"
+#  family = "mysql5.7"
+#
+#}
 
 resource "aws_db_subnet_group" "subnet-group" {
   name       = "mysql-subnet-group-${var.ENV}"
