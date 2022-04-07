@@ -1,10 +1,10 @@
 pipeline {
    agent {label "work"}
 
-   environment {
-   ACTION = "apply"
-   ENV    = "dev"
-   SSH = credentials('CENTOS_SSH')
+     environment {
+//    ACTION = "apply"
+//    ENV    = "dev"
+      SSH = credentials('CENTOS_SSH')
 
    }
 
