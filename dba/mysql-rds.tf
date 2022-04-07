@@ -43,6 +43,34 @@ resource "aws_route53_record" "mysql" {
   records = [aws_db_instance.mysql.address]
 }
 
+resource "aws_security_group" "mysql" {
+  name        = "mysql-${var.ENV}"
+  description = "mysql-${var.ENV}"
+  vpc_id = data.terraform_remote_state.VPC.outputs.VPC_ID
+
+  ingress {
+    description      = "mysql"
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    cidr_blocks      = local.ALL_CIDR
+    ipv6_cidr_blocks = []
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "mysql-${var.ENV}"
+  }
+}
+
+
 resource "null_resource" "schema-apply" {
   provisioner "local-exec" {
     command = <<EOF
