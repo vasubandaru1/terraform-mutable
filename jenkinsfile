@@ -17,9 +17,9 @@ pipeline {
       string(name: 'ACTION', defaultValue: 'apply', description: 'sring parameters')
       }
 
-      triggers {
-      pollSCM('H/2 * * * *')
-       }
+//       triggers {
+//       pollSCM('H/2 * * * *')
+//        }
 
    stages {
 
@@ -33,16 +33,20 @@ pipeline {
 //       '''
 //      }
 //      }
+
+       stage('ada & alb') {
+       parallel {
+
         stage ("dba") {
 
-        when {
-                  beforeInput true
-                  branch "dev"
-                  }
-        input {
-                                  message "Should we continue?"
-                                  ok "Yes, we should."
-                                  submitter "admin"
+//         when {
+//                   beforeInput true
+//                   branch "dev"
+//                   }
+//         input {
+//                                   message "Should we continue?"
+//                                   ok "Yes, we should."
+//                                   submitter "admin"
 
                               }
           steps {
@@ -67,7 +71,8 @@ pipeline {
       }
   }
 
-
+}
+}
 
    }
 
