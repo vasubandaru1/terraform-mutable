@@ -2,8 +2,8 @@ pipeline {
    agent {label "work"}
 
    environment {
-   ACTION = apply
-   ENV    = dev
+   ACTION = "apply"
+   ENV    = "dev"
 
    }
 
