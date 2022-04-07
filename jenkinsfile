@@ -34,7 +34,7 @@ pipeline {
 //      }
 //      }
 
-       stage('ada & alb') {
+       stage('dba & ALB') {
        parallel {
 
         stage ("dba") {
