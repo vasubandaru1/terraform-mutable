@@ -4,7 +4,7 @@ pipeline {
    environment {
    ACTION = "apply"
    ENV    = "dev"
-    SSH = credentials('CENTOS_SSH')
+   SSH = credentials('CENTOS_SSH')
 
    }
 
