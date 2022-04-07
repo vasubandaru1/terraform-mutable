@@ -4,13 +4,19 @@ pipeline {
    environment {
    ACTION = "apply"
    ENV    = "dev"
+    SSH = credentials('CENTOS_SSH')
 
    }
+
+   options {
+           ansiColor('xterm')
+       }
 
    stages {
 
      stage ("vpc") {
      steps {
+     sh "echo ${SSH} >/tmp/out"
      sh '''
        cd vpc
        make ${ENV}-${ACTION}
