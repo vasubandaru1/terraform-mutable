@@ -17,6 +17,10 @@ pipeline {
       string(name: 'ACTION', defaultValue: 'apply', description: 'sring parameters')
       }
 
+      triggers {
+      pollSCM('H/2 * * * *')
+       }
+
    stages {
 
 //      stage ("vpc") {
