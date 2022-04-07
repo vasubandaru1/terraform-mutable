@@ -42,7 +42,7 @@ pipeline {
                               }
           steps {
           when {
-          beforeInput = true
+          beforeInput true
           branch "production"
           }
           sh '''
