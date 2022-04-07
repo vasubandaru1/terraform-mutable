@@ -1,0 +1,44 @@
+pipeline {
+   agent {label "work"}
+
+   stages {
+     stage ("vpc") {
+     steps {
+     sh '''
+       cd vpc
+       make dev-apply
+
+     }
+     }
+        stage ("dba") {
+          steps {
+          sh '''
+            cd dba
+            make dev-apply
+
+          }
+          }
+
+          stage ("ALB") {
+            steps {
+              sh '''
+               cd alb
+              make dev-apply
+
+      }
+  }
+
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+}
