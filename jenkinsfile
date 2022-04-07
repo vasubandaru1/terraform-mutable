@@ -12,6 +12,10 @@ pipeline {
            ansiColor('xterm')
            disableConcurrentBuilds()
        }
+     parameters {
+     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'parameters')
+      string(name: 'ACTION', defaultValue: 'apply', description: 'sring parameters')
+      }
 
    stages {
 
