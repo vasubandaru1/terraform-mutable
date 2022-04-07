@@ -34,6 +34,11 @@ pipeline {
 //      }
 //      }
         stage ("dba") {
+
+        when {
+                  beforeInput true
+                  branch "dev"
+                  }
         input {
                                   message "Should we continue?"
                                   ok "Yes, we should."
@@ -41,10 +46,7 @@ pipeline {
 
                               }
           steps {
-          when {
-          beforeInput true
-          branch "production"
-          }
+
           sh '''
             cd dba
             make ${ENV}-${ACTION}
