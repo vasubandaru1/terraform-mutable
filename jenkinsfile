@@ -14,36 +14,36 @@ pipeline {
 
    stages {
 
-     stage ("vpc") {
-     steps {
-     sh "echo ${SSH} >/tmp/out"
-     sh '''
-       cd vpc
-       make ${ENV}-${ACTION}
+//      stage ("vpc") {
+//      steps {
+//      sh "echo ${SSH} >/tmp/out"
+//      sh '''
+//        cd vpc
+//        make ${ENV}-${ACTION}
+//
+//       '''
+//      }
+//      }
+        stage ("dba") {
+          steps {
+          sh '''
+            cd dba
+            make ${ENV}-${ACTION}
 
-      '''
-     }
-     }
-//         stage ("dba") {
-//           steps {
-//           sh '''
-//             cd dba
-//             make ${ENV}-${ACTION}
-//
-//             '''
-//           }
-//           }
-//
-//           stage ("ALB") {
-//             steps {
-//
-//               sh '''
-//                cd alb
-//               make ${ENV}-${ACTION}
-//
-//               '''
-//       }
-//   }
+            '''
+          }
+          }
+
+          stage ("ALB") {
+            steps {
+
+              sh '''
+               cd alb
+              make ${ENV}-${ACTION}
+
+              '''
+      }
+  }
 
 
 
