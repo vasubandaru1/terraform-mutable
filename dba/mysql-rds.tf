@@ -21,6 +21,7 @@ resource "aws_db_instance" "mysql" {
   password             = local.rds_pass
   parameter_group_name = aws_db_parameter_group.pg.name
   vpc_security_group_ids = [aws_security_group.mysql.id]
+  db_subnet_group_name = aws_db_subnet_group.subnet-group.name
   skip_final_snapshot  = true
 }
 
