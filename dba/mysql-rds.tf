@@ -1,6 +1,11 @@
 locals {
   rds_user = jsondecode(data.aws_secretsmanager_secret_version.secret-version.secret_string)["RDS_MYSQL_USER"]
   rds_pass = jsondecode(data.aws_secretsmanager_secret_version.secret-version.secret_string)["RDS_MYSQL_PASS"]
+
+}
+
+output "all_vpc" {
+  value = local.ALL_CIDR
 }
 
 
