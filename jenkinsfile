@@ -41,6 +41,10 @@ pipeline {
 
                               }
           steps {
+          when {
+          beforeInput = true
+          branch "production"
+          }
           sh '''
             cd dba
             make ${ENV}-${ACTION}
